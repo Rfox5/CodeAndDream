@@ -29,7 +29,7 @@ class _ImageWAnimationState extends State<ImageWAnimation>
   Widget build(BuildContext context) {
     return PrimaryPadding(
       child: GestureDetector(
-        onTap: () {
+        onDoubleTap: () {
           setState(() {
             _animationBuilder.startAnimation(() {
               // Redibuja el widget cuando la animación termina
