@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Aquí encontrarás diferentes animaciones. Te invito a cambiar los valores numéricos para ver cómo funcionan las animaciones.
+
 Widget fadeAnimation(Widget child, AnimationController controller) {
   return FadeTransition(
     opacity: Tween<double>(begin: 1.0, end: 0.0).animate(controller),

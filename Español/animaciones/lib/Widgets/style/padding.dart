@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+// Es una buena idea mantener uniformes los espacios entre los diferentes elementos de tu interfaz.
+// Como muchos elementos compartirán los mismos atributos, es mejor crear una clase y reutilizarla.
+// De esta forma, centralizas la información y solo debes cambiar un atributo para que toda la app se actualice.
+
 class TextPadding extends StatelessWidget {
   final Widget child;
 

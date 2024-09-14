@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../Animations/animation_builder.dart';
-import '../Animations/animations.dart';
-import '../Widgets/style/padding.dart';
-import '../Widgets/style/text.dart';
+import '../style/padding.dart';
+import '../style/text.dart';
+import '../../Animations/animation_builder.dart';
+import '../../Animations/animations.dart';
 
 class TextWButton extends StatefulWidget {
   const TextWButton({super.key});
@@ -12,6 +12,7 @@ class TextWButton extends StatefulWidget {
   State<TextWButton> createState() => _TextWButtonState();
 }
 
+// Para que la clase pueda ejecutar las animaciones, debe incluir TickerProviderStateMixin.
 class _TextWButtonState extends State<TextWButton>
     with TickerProviderStateMixin {
   late AnimationBuilder _animationBuilder;
@@ -19,6 +20,7 @@ class _TextWButtonState extends State<TextWButton>
   @override
   void initState() {
     super.initState();
+    // Aquí inicializamos la animación. Puedes cambiar la duración de la animación.
     _animationBuilder = AnimationBuilder(
       animation: slideOutAnimation,
       vsync: this,
@@ -31,13 +33,20 @@ class _TextWButtonState extends State<TextWButton>
     return Column(
       children: [
         PrimaryPadding(
+          // Debes envolver el widget que mostrará la animación en un AnimatedBuilder.
           child: AnimatedBuilder(
+            // Asignas el controlador de la animación.
             animation: _animationBuilder.controller,
+            // Envías el widget al controlador.
             builder: (context, child) {
               return _animationBuilder.buildAnimation(child!);
             },
+            // Este es el widget que queremos animar.
             child: TextWidget(
-                texto: "Con Boton", color: Theme.of(context).primaryColorDark),
+              texto: "Con Botón",
+              // Aquí especifico que este widget use un color específico del tema que creamos en main.
+              color: Theme.of(context).primaryColorDark,
+            ),
           ),
         ),
         ButtonPadding(
@@ -45,12 +54,13 @@ class _TextWButtonState extends State<TextWButton>
               onPressed: () {
                 setState(() {
                   _animationBuilder.startAnimation(() {
-                    // Redibuja el widget cuando la animación termina
+                    // Redibuja el widget cuando la animación termina. Aquí podrías colocar la acción que desees que se ejecute cuando la animación acabe.
+                    // Por ejemplo, podrías navegar a otra pantalla o incrementar algún contador en la pantalla.
                     setState(() {});
                   });
                 });
               },
-              child: const Text("Action")),
+              child: const Text("Animar")),
         )
       ],
     );
